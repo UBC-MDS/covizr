@@ -1,12 +1,13 @@
 Package: covizr
-Title: What the Package Does (One Line, Title Case)
+Title: Easy access to Covid-19 data from Our World in Data and generates COVID-19 charts
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    person("Rohit", "Rawat", email = "rrrohit28@gmail.com", role = c("aut", "cre"))
+    person("Rong", "Li", email = "lirnishui@gmail.com", role = c("aut", "cre"))
+    person("Thomas", "Siu", email = "thomas.siu@gmail.com", role = c("aut", "cre"))
+    person("Ting Zhe", "Yan", email = "tz@gmail.com", role = c("aut", "cre"))    
+Description: covizr is a R package that provides easy access to Covid-19 data from Our World in Data, as well as functions to generate relevant Covid-19 charts and summaries easily. We aim to make covizpy simple and easy to use. Our goal is to enable anyone with basic Python programming knowledge to access and visualize Covid-19 data, and make their own informed decisions and conclusions.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
