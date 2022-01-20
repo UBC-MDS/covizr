@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_data.R
 \name{get_data}
 \alias{get_data}
-\title{Title}
+\title{Get COVID-19 data as data frame}
 \usage{
 get_data(date_from, date_to, location)
 }
@@ -17,7 +17,7 @@ get_data(date_from, date_to, location)
 data.frame
 }
 \description{
-Title
+Retrieve covid data in pandas dataframe format witg tge time periods provided
 }
 \examples{
 get_data(date_from='2022-01-01', date_to="2022-01-07", location=c('Canada'))

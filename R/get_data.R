@@ -1,4 +1,6 @@
-#' Title
+#' Get COVID-19 data as data frame
+#'
+#'Retrieve covid data in pandas dataframe format witg tge time periods provided
 #'
 #' @param date_from Start date of the data range with format '%Y-%m-%d'. By default it represents 7 days prior to today's date
 #' @param date_to End date of data range with format '%Y-%m-%d'. By default it represents today's date
