@@ -8,8 +8,8 @@
 #' @param val Quantitative values to be aggregated. Must be numeric variable.
 #' Also known as a 'measure'. By default 'new_cases'
 #' @param fun Aggregation function for val, by default 'sum'
-#' @param date_from Start date for plot summary, by default '2022-01-01'
-#' @param date_to End date for plot summary, by default '2022-01-13'
+#' @param date_from Start date of the data range with format like '2021-10-31'. By default it represents 7 days prior to today's date
+#' @param date_to End date of data range with format like '2021-10-31'. By default it represents today's date
 #' @param top_n Specify number of qualitative values to show, by default 5
 #'
 #' @return Altair Chart object
