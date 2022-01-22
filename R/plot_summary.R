@@ -12,7 +12,7 @@
 #' @param date_to End date of data range with format like '2021-10-31'. By default it represents today's date
 #' @param top_n Specify number of qualitative values to show, by default 5
 #'
-#' @return Altair Chart object
+#' @return ggplot chart object
 #' @export
 #'
 #' @examples
