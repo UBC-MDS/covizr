@@ -29,7 +29,7 @@ Also known as a 'measure'. By default 'new_cases'}
 \item{top_n}{Specify number of qualitative values to show, by default 5}
 }
 \value{
-Altair Chart object
+ggplot chart object
 }
 \description{
 Create a horizontal bar chart summarizing a specified variable and value
