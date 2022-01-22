@@ -16,7 +16,8 @@
 #' @export
 #'
 #' @examples
-#' plot_summary(var = "location", val = "new_cases", fun = "sum", date_from = "2022-01-01", date_to = "2022-01-13", top_n = 5)
+#' plot_summary(var = "location", val = "new_cases", fun = "sum",
+#' date_from = "2022-01-01", date_to = "2022-01-13", top_n = 5)
 plot_summary <-
   function(var = "location",
            val = "new_cases",
