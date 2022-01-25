@@ -61,5 +61,5 @@ get_data <- function(date_from, date_to, location) {
       dplyr::filter(location %in% location_)
  }
 
-  covid_df <- dplyr::filter(covid_df, !stringr::str_detect("iso_code", "^OWID"))
+  covid_df <- dplyr::filter(covid_df, !stringr::str_detect(iso_code, "^OWID"))
 }
