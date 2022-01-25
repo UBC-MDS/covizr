@@ -17,8 +17,10 @@
 #' @export
 #'
 #' @examples
-#' plot_summary(var = "location", val = "new_cases", fun = "sum",
-#' date_from = "2022-01-01", date_to = "2022-01-13", top_n = 5)
+#' plot_summary(
+#'   var = "location", val = "new_cases", fun = "sum",
+#'   date_from = "2022-01-01", date_to = "2022-01-13", top_n = 5
+#' )
 plot_summary <-
   function(df,
            var = "location",
@@ -37,4 +39,60 @@ plot_summary <-
       date_from <- today()
     }
 
+    # Exception Handling
+    if (!is.data.frame(df)) {
+      stop("df must be a data.frame!")
+    }
+
+    if (!is.string(var)) {
+      stop("var must be a string!")
+    }
+
+    if (!is.string(val)) {
+      stop("val must be a string!")
+    }
+
+    if (!is.string(fun)) {
+      stop("fun must be a string!")
+    }
+
+    if (is.numeric(df[[var]])) {
+      stop("val needs to be a categorical variable!")
+    }
+
+    if (!is.numeric(df[[val]])) {
+      stop("val needs to be a numeric variable!")
+    }
+
+    if (date_to < date_from) {
+      stop("Invalid values: date_from should be smaller or equal to date_to (or today's date if date_to is not specified).")
+    }
+
+    if (date_to > today()) {
+      stop("Invalid values: date_to should be smaller or equal to today.")
+    }
+
+    # Parse date
+    date_from <- ymd(date_from)
+    date_to   <- ymd(date_to)
+
+    # Convert 'date' to date format
+    df$date <- ymd(df$date)
+
+    # Filter by date
+    df <- df %>% filter(between(date, date_to, date_from))
+
+    # Aggregation
+    var <- sym(var)
+    val <- sym(val)
+    fun <- eval(str2lang(fun))
+
+    df_plot <- df %>%
+      group_by(!!var) %>%
+      summarise(val := fun(val))
+
+    plot_obj <- ggplot(df, aes(y = var, x = val)) +
+      geom_bar(stat = "identity")
+
+    return plot_obj
   }
