@@ -5,15 +5,18 @@
 \title{Generate summary plot}
 \usage{
 plot_summary(
+  df,
   var = "location",
   val = "new_cases",
   fun = "sum",
-  date_from = "2022-01-01",
-  date_to = "2022-01-13",
+  date_from = NULL,
+  date_to = NULL,
   top_n = 5
 )
 }
 \arguments{
+\item{df}{Data frame of the selected covid data from get_data()}
+
 \item{var}{Qualitative values to segment data. Must be a categorical variable.
 Also known as a 'dimension'. By default 'location'}
 
@@ -22,9 +25,9 @@ Also known as a 'measure'. By default 'new_cases'}
 
 \item{fun}{Aggregation function for val, by default 'sum'}
 
-\item{date_from}{Start date of the data range with format like '2021-10-31'. By default it represents 7 days prior to today's date}
+\item{date_from}{Start date of the data range with format 'YYYY-MM-DD'. By default 'NULL' is used to represent 7 days prior to today's date}
 
-\item{date_to}{End date of data range with format like '2021-10-31'. By default it represents today's date}
+\item{date_to}{End date of data range with format 'YYYY-MM-DD'. By default 'NULL' is used to represent today's date}
 
 \item{top_n}{Specify number of qualitative values to show, by default 5}
 }
@@ -36,6 +39,10 @@ Create a horizontal bar chart summarizing a specified variable and value
 within a time period
 }
 \examples{
-plot_summary(var = "location", val = "new_cases", fun = "sum",
-date_from = "2022-01-01", date_to = "2022-01-13", top_n = 5)
+df <- get_data()
+plot_summary(
+  df,
+  var = "location", val = "new_cases", fun = "sum",
+  date_from = "2022-01-01", date_to = "2022-01-13", top_n = 5
+)
 }

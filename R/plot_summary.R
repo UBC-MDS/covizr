@@ -15,9 +15,12 @@
 #'
 #' @return ggplot chart object
 #' @export
+#' @importFrom rlang :=
 #'
 #' @examples
+#' df <- get_data()
 #' plot_summary(
+#'   df,
 #'   var = "location", val = "new_cases", fun = "sum",
 #'   date_from = "2022-01-01", date_to = "2022-01-13", top_n = 5
 #' )
@@ -32,11 +35,11 @@ plot_summary <-
 
     # init date if NULL
     if (is.null(date_from)) {
-      date_from <- today() - days(7)
+      date_from <- lubridate::today() - lubridate::days(7)
     }
 
     if (is.null(date_to)) {
-      date_from <- today()
+      date_from <- lubridate::today()
     }
 
     # Exception Handling
@@ -44,15 +47,15 @@ plot_summary <-
       stop("df must be a data.frame!")
     }
 
-    if (!is.string(var)) {
+    if (!is.character(var)) {
       stop("var must be a string!")
     }
 
-    if (!is.string(val)) {
+    if (!is.character(val)) {
       stop("val must be a string!")
     }
 
-    if (!is.string(fun)) {
+    if (!is.character(fun)) {
       stop("fun must be a string!")
     }
 
@@ -68,31 +71,31 @@ plot_summary <-
       stop("Invalid values: date_from should be smaller or equal to date_to (or today's date if date_to is not specified).")
     }
 
-    if (date_to > today()) {
+    if (date_to > lubridate::today()) {
       stop("Invalid values: date_to should be smaller or equal to today.")
     }
 
     # Parse date
-    date_from <- ymd(date_from)
-    date_to   <- ymd(date_to)
+    date_from <- lubridate::ymd(date_from)
+    date_to <- lubridate::ymd(date_to)
 
     # Convert 'date' to date format
-    df$date <- ymd(df$date)
+    df$date <- lubridate::ymd(df$date)
 
     # Filter by date
-    df <- df %>% filter(between(date, date_to, date_from))
+    df <- df %>% dplyr::filter(dplyr::between(date, date_to, date_from))
 
     # Aggregation
-    var <- sym(var)
-    val <- sym(val)
+    var <- rlang::sym(var)
+    val <- rlang::sym(val)
     fun <- eval(str2lang(fun))
 
     df_plot <- df %>%
-      group_by(!!var) %>%
-      summarise(val := fun(val))
+      dplyr::group_by(!!var) %>%
+      dplyr::summarise(value := fun(!!val))
 
-    plot_obj <- ggplot(df, aes(y = var, x = val)) +
-      geom_bar(stat = "identity")
+    plot_obj <- ggplot2::ggplot(df_plot, ggplot2::aes(y = !!var, x = value)) +
+      ggplot2::geom_bar(stat = "identity")
 
-    return plot_obj
+    return(plot_obj)
   }

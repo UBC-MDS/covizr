@@ -1,3 +1,5 @@
+df <- get_data()
+
 test_that("Test input type error of plot_summary()", {
   # var
   expect_error(plot_summary(df, var = 123), "var must be a string!")
