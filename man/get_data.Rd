@@ -20,5 +20,5 @@ data.frame
 Retrieve covid data in pandas dataframe format witg tge time periods provided
 }
 \examples{
-get_data(date_from='2022-01-01', date_to="2022-01-07", location=c('Canada'))
+get_data(date_from = "2022-01-01", date_to = "2022-01-07", location = c("Canada"))
 }
