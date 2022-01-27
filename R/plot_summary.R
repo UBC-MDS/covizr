@@ -67,8 +67,12 @@ plot_summary <-
       stop("val needs to be a numeric variable!")
     }
 
+    if (!is.numeric(top_n) | top_n <= 0) {
+      stop("top_n must be an integer bigger than zero")
+    }
+
     if (date_to < date_from) {
-      stop("Invalid values: date_from should be smaller or equal to date_to (or today's date if date_to is not specified).")
+      stop("Invalid values: date_from should be smaller or equal to date_to")
     }
 
     if (date_to > lubridate::today()) {
@@ -107,7 +111,7 @@ plot_summary <-
       dplyr::slice_max(order_by = value, n = top_n)
 
     plot_obj <- ggplot2::ggplot(df_plot,
-                                ggplot2::aes(y = reorder(!!var, -value),
+                                ggplot2::aes(y = stats::reorder(!!var, -value),
                                              x = value,
                                              fill = !!var)) +
       ggplot2::geom_bar(stat = "identity",
