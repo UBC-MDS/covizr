@@ -19,5 +19,6 @@ Imports:
     magrittr,
     readr,
     rlang,
+    scales,
     stringr,
     testthat

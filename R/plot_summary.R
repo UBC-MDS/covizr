@@ -39,7 +39,7 @@ plot_summary <-
     }
 
     if (is.null(date_to)) {
-      date_from <- lubridate::today()
+      date_to <- lubridate::today()
     }
 
     # Exception Handling
@@ -83,7 +83,18 @@ plot_summary <-
     df$date <- lubridate::ymd(df$date)
 
     # Filter by date
-    df <- df %>% dplyr::filter(dplyr::between(date, date_to, date_from))
+    df <- df %>% dplyr::filter(dplyr::between(date, date_from, date_to))
+
+    # Beautify axis labels and title
+    y_label <- stringr::str_to_title(stringr::str_replace(var, "_", " "))
+    x_label <- stringr::str_to_title(stringr::str_replace(val, "_", " "))
+    plot_title <- paste("Top", top_n, y_label, "by", x_label)
+    if (date_from == date_to) {
+      plot_subtitle <- paste("from", date_from)
+    }
+    else {
+      plot_subtitle <- paste("from", date_from, "to", date_to)
+    }
 
     # Aggregation
     var <- rlang::sym(var)
@@ -92,10 +103,22 @@ plot_summary <-
 
     df_plot <- df %>%
       dplyr::group_by(!!var) %>%
-      dplyr::summarise(value := fun(!!val))
+      dplyr::summarise(value := fun(!!val)) %>%
+      dplyr::slice_max(order_by = value, n = top_n)
 
-    plot_obj <- ggplot2::ggplot(df_plot, ggplot2::aes(y = !!var, x = value)) +
-      ggplot2::geom_bar(stat = "identity")
+    plot_obj <- ggplot2::ggplot(df_plot,
+                                ggplot2::aes(y = reorder(!!var, -value),
+                                             x = value,
+                                             fill = !!var)) +
+      ggplot2::geom_bar(stat = "identity",
+                        show.legend = FALSE) +
+      ggplot2::scale_x_continuous(labels = scales::comma) +
+      ggplot2::ylab(y_label) +
+      ggplot2::xlab(x_label) +
+      ggplot2::ggtitle(label = plot_title,
+                       subtitle = plot_subtitle) +
+      ggplot2::theme(plot.title=ggplot2::element_text(face="bold")) +
+      ggplot2::theme(plot.subtitle=ggplot2::element_text(size=10, colour="gray"))
 
     return(plot_obj)
   }
