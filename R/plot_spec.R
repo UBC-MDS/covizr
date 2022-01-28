@@ -15,6 +15,7 @@
 #' @export
 #'
 #' @examples
+#' df <- get_data(date_from = "2022-01-01", date_to = "2022-01-07")
 #' plot_spec(df, date_from = "2022-01-01", date_to = "2022-01-07", location = c("Canada", "Turkey"))
 plot_spec <- function(df,
                       location = c("Canada"),

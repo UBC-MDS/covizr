@@ -1,5 +1,4 @@
-df <-
-  readr::read_rds(here::here("tests", "testthat", "test_df_plot_spec.rds"))
+df <- readr::read_rds("test_df_plot_spec.rds")
 
 test_that("Test input type error of plot_spec()", {
   # check input type of data frame
