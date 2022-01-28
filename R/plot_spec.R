@@ -15,7 +15,7 @@
 #' @export
 #'
 #' @examples
-#' plot_spec(df, date_from = "2022-01-01", date_to = "2022-01-14", location = c("Canada", "China", "Cuba"))
+#' plot_spec(df, date_from = "2022-01-01", date_to = "2022-01-07", location = c("Canada", "Turkey"))
 plot_spec <- function(df,
                       location = c("Canada"),
                       val = c("new_cases"),
@@ -33,7 +33,7 @@ plot_spec <- function(df,
 
   # Exception Handling
   if (!is.data.frame(df)) {
-    stop("Invalid argument type: df must be a data frame.")
+    stop("Data not found. There may be a problem with data URL.")
   }
 
   if (!is.character(location)) {
@@ -49,25 +49,29 @@ plot_spec <- function(df,
   if (!is.character(date_from) | length(date_from) > 1) {
     stop("Invalid argument type: date_from must be in string format of YYYY-MM-DD.")
   } else if (is.na(as.Date(date_from, "%Y-%m-%d"))) {
-    stop("Invalid argument value: date_from must be in format of YYYY-MM-DD. Also check if it is a valid date.")
+    stop(
+      "Invalid argument value: date_from must be in format of YYYY-MM-DD. Also check if it is a valid date."
+    )
   }
 
   if (!is.character(date_to) | length(date_to) > 1) {
     stop("Invalid argument type: date_to must be in string format of YYYY-MM-DD.")
   } else if (is.na(as.Date(date_to, "%Y-%m-%d"))) {
-    stop("Invalid argument value: date_to must be in format of YYYY-MM-DD. Also check if it is a valid date.")
+    stop(
+      "Invalid argument value: date_to must be in format of YYYY-MM-DD. Also check if it is a valid date."
+    )
   }
 
   if (date_to < date_from) {
-    stop("Invalid values: date_from should be smaller or equal to date_to (or today's date if date_to is not specified).")
+    stop("Invalid values: date_from should be smaller or equal to date_to.")
   }
 
   if (date_to > Sys.Date()) {
     stop("Invalid values: date_to should be smaller or equal to today.")
   }
 
-  if (!is.null(title)){
-    if(!is.character(title) | length(title) > 1){
+  if (!is.null(title)) {
+    if (!is.character(title) | length(title) > 1) {
       stop("Invalid argument type: title must be a string.")
     }
   }
@@ -79,26 +83,43 @@ plot_spec <- function(df,
     dplyr::filter(location %in% location_spec)
 
   # Create Y axis label
-  val_label <- stringr::str_to_title(stringr::str_replace(val, "_", " "))
+  val_label <-
+    stringr::str_to_title(stringr::str_replace(val, "_", " "))
 
-  # init plot title if None
-  if (is.null(title)){
-    title <- paste("Covid", val_label)
+  # Init plot title if None
+  if (is.null(title)) {
+    title <- paste("COVID-19", val_label)
   }
 
+  # Create orders for direct labels
   orders <- df |>
     dplyr::group_by(location) |>
-    dplyr::filter(date==max(date)) |>
-    dplyr::select(location,val,date)
+    dplyr::filter(date == max(date)) |>
+    dplyr::select(location, val, date)
 
+  # Create line plot and text labels
   plot <- df |>
-    ggplot2::ggplot(ggplot2::aes_string(x="date",y=val, color="location", label="location")) +
-    ggplot2::geom_line()+
-    ggplot2::geom_text(data=orders, ggplot2::aes_string(x="date",y=val, color="location"),vjust=-1)+
-    ggthemes::scale_color_tableau()+
-    ggplot2::theme(legend.position = 'none')+
-    ggplot2::labs(x="Date", y=val_label, title=title)+
-    ggplot2::scale_x_date(date_labels =  "%Y-%m-%d")
-
+    ggplot2::ggplot(ggplot2::aes_string(
+      x = "date",
+      y = val,
+      color = "location",
+      label = "location"
+    )) +
+    ggplot2::geom_line() +
+    ggplot2::geom_text(
+      data = orders,
+      ggplot2::aes_string(x = "date", y = val, color = "location"),
+      size = 2.5,
+      vjust = -0.6,
+      hjust = 0.7
+    ) +
+    ggplot2::theme(legend.position = 'none') +
+    ggplot2::labs(x = "Date", y = val_label, title = title) +
+    ggplot2::scale_x_date(date_labels =  "%Y-%m-%d") +
+    ggplot2::scale_y_continuous(labels = scales::comma) +
+    ggplot2::theme(
+      axis.text = ggplot2::element_text(size = 10),
+      legend.text = ggplot2::element_text(size = 8)
+    )
   plot
 }

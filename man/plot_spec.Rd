@@ -8,7 +8,7 @@ within a time period}
 plot_spec(
   df,
   location = c("Canada"),
-  val = "new_cases",
+  val = c("new_cases"),
   date_from = NULL,
   date_to = NULL,
   title = NULL
@@ -23,9 +23,10 @@ plot_spec(
 Also known as a 'measure'. By default 'new_cases'}
 
 \item{date_from}{Start date of the data range with format like '2021-10-31'.
-By default it represents 7 days prior to today's date}
+By default 'NULL' is used to represent 7 days prior to today's date}
 
-\item{date_to}{End date of data range with format like '2021-10-31'. By default it represents today's date}
+\item{date_to}{End date of data range with format like '2021-10-31'.
+By default 'NULL' is used to represent 7 days prior to today's date}
 
 \item{title}{The title of the plot. By default will be generated based on val}
 }
@@ -37,5 +38,5 @@ Create a line chart presenting specific country/countries COVID information
 within a time period
 }
 \examples{
-plot_spec(df, date_from = "2022-01-01", date_to = "2022-01-14")
+plot_spec(df, date_from = "2022-01-01", date_to = "2022-01-07", location = c("Canada", "Turkey"))
 }
