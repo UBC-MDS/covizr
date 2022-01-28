@@ -22,7 +22,7 @@ test_that("Test aggregation logic of plot_summary()", {
   expect_equal(plot_summary(df)$data$location[1], "United States")
 
   # check groupby sum produce correct result for new_cases
-  expect_equal(plot_summary(df)$data$value[1], 5216188)
+  expect_equal(plot_summary(df, date_from = "2022-01-19", date_to = "2022-01-26")$data$value[1], 5216188)
 })
 
 test_that("Test ggplot output of plot_summary()", {
