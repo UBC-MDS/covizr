@@ -6,15 +6,121 @@
 #' @param val Quantitative values to be aggregated. Must be numeric variable.
 #' Also known as a 'measure'. By default 'new_cases'
 #' @param date_from Start date of the data range with format like '2021-10-31'.
-#' By default it represents 7 days prior to today's date
-#' @param date_to End date of data range with format like '2021-10-31'. By default it represents today's date
+#' By default 'NULL' is used to represent 7 days prior to today's date
+#' @param date_to End date of data range with format like '2021-10-31'.
+#' By default 'NULL' is used to represent 7 days prior to today's date
 #' @param title The title of the plot. By default will be generated based on val
 #'
 #' @return A ggplot line chart
 #' @export
 #'
 #' @examples
-#' plot_spec(df, date_from = "2022-01-01", date_to = "2022-01-14")
-plot_spec <- function(df, location = c('Canada'), val = "new_cases", date_from = NULL, date_to = NULL, title = NULL) {
+#' df <- get_data(date_from = "2022-01-01", date_to = "2022-01-07")
+#' plot_spec(df, date_from = "2022-01-01", date_to = "2022-01-07", location = c("Canada", "Turkey"))
+plot_spec <- function(df,
+                      location = c("Canada"),
+                      val = c("new_cases"),
+                      date_from = NULL,
+                      date_to = NULL,
+                      title = NULL) {
+  # Init date if NULL
+  if (is.null(date_from)) {
+    date_from <- format(Sys.Date() - 7, "%Y-%m-%d")
+  }
 
+  if (is.null(date_to)) {
+    date_to <- format(Sys.Date(), "%Y-%m-%d")
+  }
+
+  # Exception Handling
+  if (!is.data.frame(df)) {
+    stop("Data not found. There may be a problem with data URL.")
+  }
+
+  if (!is.character(location)) {
+    stop("Invalid argument type: location must be a character vector.")
+  }
+
+  if (!is.character(val) | length(val) > 1) {
+    stop("Invalid argument type: val must be a string.")
+  } else if (!is.numeric(df[[val]])) {
+    stop("Invalid argument type: val must be a numeric variable.")
+  }
+
+  if (!is.character(date_from) | length(date_from) > 1) {
+    stop("Invalid argument type: date_from must be in string format of YYYY-MM-DD.")
+  } else if (is.na(as.Date(date_from, "%Y-%m-%d"))) {
+    stop(
+      "Invalid argument value: date_from must be in format of YYYY-MM-DD. Also check if it is a valid date."
+    )
+  }
+
+  if (!is.character(date_to) | length(date_to) > 1) {
+    stop("Invalid argument type: date_to must be in string format of YYYY-MM-DD.")
+  } else if (is.na(as.Date(date_to, "%Y-%m-%d"))) {
+    stop(
+      "Invalid argument value: date_to must be in format of YYYY-MM-DD. Also check if it is a valid date."
+    )
+  }
+
+  if (date_to < date_from) {
+    stop("Invalid values: date_from should be smaller or equal to date_to.")
+  }
+
+  if (date_to > Sys.Date()) {
+    stop("Invalid values: date_to should be smaller or equal to today.")
+  }
+
+  if (!is.null(title)) {
+    if (!is.character(title) | length(title) > 1) {
+      stop("Invalid argument type: title must be a string.")
+    }
+  }
+
+  # Filter by date and country
+  location_spec <- location
+  df <- df |>
+    dplyr::filter(date >= date_from, date <= date_to) |>
+    dplyr::filter(location %in% location_spec)
+
+  # Create Y axis label
+  val_label <-
+    stringr::str_to_title(stringr::str_replace(val, "_", " "))
+
+  # Init plot title if None
+  if (is.null(title)) {
+    title <- paste("COVID-19", val_label)
+  }
+
+  # Create orders for direct labels
+  orders <- df |>
+    dplyr::group_by(location) |>
+    dplyr::filter(date == max(date)) |>
+    dplyr::select(location, val, date)
+
+  # Create line plot and text labels
+  plot <- df |>
+    ggplot2::ggplot(ggplot2::aes_string(
+      x = "date",
+      y = val,
+      color = "location",
+      label = "location"
+    )) +
+    ggplot2::geom_line() +
+    ggplot2::geom_text(
+      data = orders,
+      ggplot2::aes_string(x = "date", y = val, color = "location"),
+      size = 2.5,
+      vjust = -0.6,
+      hjust = 0.7
+    ) +
+    ggplot2::theme(legend.position = 'none') +
+    ggplot2::labs(x = "Date", y = val_label, title = title) +
+    ggplot2::scale_x_date(date_labels =  "%Y-%m-%d") +
+    ggplot2::scale_y_continuous(labels = scales::comma) +
+    ggplot2::theme(
+      axis.text = ggplot2::element_text(size = 10),
+      legend.text = ggplot2::element_text(size = 8)
+    )
+  plot
 }
