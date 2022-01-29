@@ -86,7 +86,7 @@ plot_spec(df, location=c("Canada", "Turkey"), val="new_cases", date_from="2022-0
 plot_metric(df, loc_val = c("Canada"), metric='positive_rate', date_from="2022-01-15", date_to="2022-01-21")
 ```
 
-![New COVID-19 case metric graph](https://github.com/UBC-MDS/covizr/blob/update-usage-README/img/plot_metric.png)
+![New COVID-19 case metric graph](https://github.com/UBC-MDS/covizr/raw/main/img/plot_metric.png)
 
 
 
