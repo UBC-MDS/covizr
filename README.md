@@ -48,6 +48,9 @@ This package contains four functions: `plot_metric`, `plot_spec`,
 devtools::install_github("UBC-MDS/covizr")
 ```
 
+After installation, we recommend to restart the R session before
+proceeding, as there may be dependencies packages being updated.
+
 ## Usage and Examples
 
 To use the package, import the package with following commands:
