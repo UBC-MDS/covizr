@@ -9,10 +9,10 @@ test_that("Check return values of the function", {
   expect_equal(sort(unique(df$location)), sort(unique(location_)))
 
   # date_to should match the default range of today or today - 1
-  expect_true((max(df$date) == Sys.Date()) | (max(df$date) == Sys.Date() - 1))
+  expect_true((max(df$date) == Sys.Date()) | (max(df$date) == Sys.Date() - 1) | (max(df$date) == Sys.Date() - 2))
 
   # date_from should match the default range of D-7
-  expect_true((min(df$date) == Sys.Date() - 7))
+  expect_true((min(df$date) == Sys.Date() - 7) | (min(df$date) == Sys.Date() - 8))
 
   # Data returned should not be further filtered
   expect_true((length(df) > 10))
