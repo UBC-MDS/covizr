@@ -4,14 +4,30 @@
 \alias{plot_metric}
 \title{Plot a line chart using ggplot}
 \usage{
-plot_metric(metric = "positive_rate", date_from = NULL, date_to = NULL)
+plot_metric(
+  df,
+  loc_val = "Canada",
+  metric = "positive_rate",
+  date_from = NULL,
+  date_to = NULL,
+  location = NULL,
+  new_cases = NULL
+)
 }
 \arguments{
+\item{df}{Data frame of the selected COVID data from get_data()}
+
+\item{loc_val}{A character vector of target country name. By default c('Canada)}
+
 \item{metric}{A character vector with, at most, one element.}
 
 \item{date_from}{A character vector having the starting date, one element.}
 
 \item{date_to}{A character vector having the end date, one element.}
+
+\item{location}{A character vector containing the locations around the world}
+
+\item{new_cases}{A character vector containing aggregated total new COVID cases}
 }
 \value{
 A ggplot line chart
@@ -20,9 +36,8 @@ A ggplot line chart
 Plot a line chart using ggplot
 }
 \examples{
+data <- get_data(date_from = "2022-01-01", date_to = "2022-01-07")
+loc <- c("Canada")
 x <- "positive_rate"
-plot_metric(x, date_from = "2022-01-01", "2022-01-15")
-
-y <- "death_rate"
-plot_metric(y, date_from = "2022-01-01", "2022-01-15")
+plot_metric(df = data, loc_val = loc, metric = x, date_from = "2022-01-01", "2022-01-15")
 }

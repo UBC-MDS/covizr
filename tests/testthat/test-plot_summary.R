@@ -1,4 +1,4 @@
-df <- read_rds("test_df_plot_summary.rds")
+df <- readr::read_rds("test_df_plot_summary.rds")
 
 test_that("Test input type error of plot_summary()", {
   # var
