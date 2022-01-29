@@ -105,7 +105,11 @@ plot_metric <- function(df,
       sec.axis = ggplot2::sec_axis(~ . / coeff, name = y_label)
     ) +
     ggplot2::xlab("Date") +
-    ggplot2::ggtitle(title)
+    ggplot2::ggtitle(title) +
+    ggplot2::theme(
+      axis.title.y.left = ggplot2::element_text(colour = "blue"),
+      axis.title.y.right = ggplot2::element_text(color = "orange")
+    )
 
   return(plot_line)
 }
