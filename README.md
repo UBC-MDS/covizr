@@ -78,7 +78,7 @@ plot_summary(df, var="location", val="new_cases", fun="sum", date_from="2022-01-
 plot_spec(df, location=c("Canada", "Turkey"), val="new_cases", date_from="2022-01-01", date_to="2022-01-07")
 ```
 
-![New COVID-19 specific graph](https://github.com/UBC-MDS/covizr/blob/update-usage-README/img/plot_spec.png)
+![New COVID-19 specific graph](https://github.com/UBC-MDS/covizr/raw/main/img/plot_spec.png)
 
 ### Plot new COVID-19 cases versus another metric (line chart)
 
