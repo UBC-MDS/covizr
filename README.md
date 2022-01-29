@@ -5,7 +5,7 @@
 
 <!-- badges: start -->
 
-[![codecov](https://codecov.io/gh/UBC-MDS/covizr/branch/master/graph/badge.svg?token=noFqX1BkyC)](https://codecov.io/gh/UBC-MDS/covizr)
+[![codecov](https://codecov.io/gh/UBC-MDS/covizr/branch/main/graph/badge.svg?token=noFqX1BkyC)](https://codecov.io/gh/UBC-MDS/covizr)
 <!-- badges: end -->
 
 `covizr` is a R package that provides easy access to Covid-19 data from
