@@ -52,23 +52,23 @@ test_that("Test input type error of plot_spec()", {
 
 test_that("Test ggplot output of plot_spec()", {
   # check y-axis is using the correct variable
-  expect_equal(plot_spec(df, val = "new_deaths")$labels$y, "New Deaths")
+  expect_equal(plot_spec(df, val = "new_deaths", date_from = "2022-01-20", date_to = "2022-01-26")$labels$y, "New Deaths")
 
   # check color of the plot
-  expect_equal(plot_spec(df, val = "new_deaths")$labels$c, "location")
+  expect_equal(plot_spec(df, val = "new_deaths", date_from = "2022-01-20", date_to = "2022-01-26")$labels$c, "location")
 
   # check the layers of the plot
   expect_true("GeomLine" %in% c(class(
-    plot_spec(df, val = "new_deaths", location = c("Canada"))$layers[[1]]$geom
+    plot_spec(df, val = "new_deaths", location = c("Canada"), date_from = "2022-01-20", date_to = "2022-01-26")$layers[[1]]$geom
   )))
   expect_true("GeomText" %in% c(class(
-    plot_spec(df, val = "new_deaths", location = c("Canada"))$layers[[2]]$geom
+    plot_spec(df, val = "new_deaths", location = c("Canada"), date_from = "2022-01-20", date_to = "2022-01-26")$layers[[2]]$geom
   )))
 
   # check the title of the plot
-  expect_equal(plot_spec(df, title = "Daily cases")$labels$title,
+  expect_equal(plot_spec(df, title = "Daily cases", date_from = "2022-01-20", date_to = "2022-01-26")$labels$title,
                "Daily cases")
 
   # check the data of the plot
-  expect_equal(plot_spec(df, location = c("Canada"))$layers[[2]]$data$new_cases, 5860)
+  expect_equal(plot_spec(df, location = c("Canada"), date_from = "2022-01-20", date_to = "2022-01-26")$layers[[2]]$data$new_cases, 5860)
 })
