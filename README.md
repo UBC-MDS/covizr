@@ -70,7 +70,7 @@ df = get_data(date_from="2022-01-01", date_to="2022-01-21")
 plot_summary(df, var="location", val="new_cases", fun="sum", date_from="2022-01-01", date_to="2022-01-15", top_n=10)
 ```
 
-![Summary graph](https://github.com/UBC-MDS/covizr/blob/update-usage-README/img/plot_summary.png)
+![Summary graph](https://github.com/UBC-MDS/covizr/raw/main/img/plot_summary.png)
 
 ### Plot COVID-19 cases for specific countries (line chart)
 
