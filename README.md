@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# covizr
+# covizr <img src='img/logo.png' align="right" height="139" />
 
 <!-- badges: start -->
 
