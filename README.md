@@ -4,6 +4,8 @@
 # covizr
 
 <!-- badges: start -->
+
+[![codecov](https://codecov.io/gh/UBC-MDS/covizr/branch/master/graph/badge.svg?token=noFqX1BkyC)](https://codecov.io/gh/UBC-MDS/covizr)
 <!-- badges: end -->
 
 `covizr` is a R package that provides easy access to Covid-19 data from
@@ -34,8 +36,8 @@ This package contains four functions: `plot_metric`, `plot_spec`,
     country/countries COVID information within a time period
 
 -   `get_data`: User can retrieve the COVID data from the source as a
-    pandas dataframe. Specific data can be retrieved by passing the date
-    range and the list of countries
+    dataframe. Specific data can be retrieved by passing the date range
+    and the list of countries
 
 -   `plot_summary`: Create a horizontal bar chart summarising a
     specified variable and value within a time period
@@ -43,16 +45,14 @@ This package contains four functions: `plot_metric`, `plot_spec`,
 ## Installation
 
 ``` r
-#install.packages("covizr")
 devtools::install_github("UBC-MDS/covizr")
 ```
-
 
 ## Usage and Examples
 
 To use the package, import the package with following commands:
 
-```r
+``` r
 library(covizr)
 ```
 
@@ -60,35 +60,36 @@ To use the functions, see below examples:
 
 ### Retrieve COVID-19 data with specified date range and default all locations
 
-```r
+``` r
 df = get_data(date_from="2022-01-01", date_to="2022-01-21")
 ```
 
 ### Plot summary graph (bar chart)
 
-```r
+``` r
 plot_summary(df, var="location", val="new_cases", fun="sum", date_from="2022-01-01", date_to="2022-01-15", top_n=10)
 ```
 
-![Summary graph](https://github.com/UBC-MDS/covizr/raw/main/img/plot_summary.png)
+![Summary
+graph](https://github.com/UBC-MDS/covizr/raw/main/img/plot_summary.png)
 
 ### Plot COVID-19 cases for specific countries (line chart)
 
-```r
+``` r
 plot_spec(df, location=c("Canada", "Turkey"), val="new_cases", date_from="2022-01-01", date_to="2022-01-07")
 ```
 
-![New COVID-19 specific graph](https://github.com/UBC-MDS/covizr/raw/main/img/plot_spec.png)
+![New COVID-19 specific
+graph](https://github.com/UBC-MDS/covizr/raw/main/img/plot_spec.png)
 
 ### Plot new COVID-19 cases versus another metric (line chart)
 
-```r
+``` r
 plot_metric(df, loc_val = c("Canada"), metric='positive_rate', date_from="2022-01-15", date_to="2022-01-21")
 ```
 
-![New COVID-19 case metric graph](https://github.com/UBC-MDS/covizr/raw/main/img/plot_metric.png)
-
-
+![New COVID-19 case metric
+graph](https://github.com/UBC-MDS/covizr/raw/main/img/plot_metric.png)
 
 ## Contributors
 
