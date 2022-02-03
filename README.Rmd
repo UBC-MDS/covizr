@@ -13,10 +13,11 @@ knitr::opts_chunk$set(
 )
 ```
 
-# covizr <img src='img/logo.png' align="right" height="139" />
+# covizr <img src='vignettes/logo.png' align="right" style="width:100px;height:100px;"/>
 
 <!-- badges: start -->
 [![codecov](https://codecov.io/gh/UBC-MDS/covizr/branch/main/graph/badge.svg?token=noFqX1BkyC)](https://codecov.io/gh/UBC-MDS/covizr)
+[![R-CMD-check](https://github.com/UBC-MDS/covizr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/UBC-MDS/covizr/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 `covizr` is a R package that provides easy access to Covid-19 data from
@@ -37,13 +38,13 @@ answer questions regarding the Covid-19 pandemic as quickly as possible.
 
 ## Features
 
-This package contains four functions: `plot_metric`, `plot_spec`, `get_data` and `plot_summary`.
+This package contains four functions: `get_data`, `plot_metric`, `plot_spec` and `plot_summary`.
+
+* `get_data`: User can retrieve the COVID data from the source as a dataframe. Specific data can be retrieved by passing the date range and the list of countries
 
 * `plot_metric`: Create a line chart presenting COVID total new cases verses another metric within a time period
 
 * `plot_spec`: Create a line chart presenting specific country/countries COVID information within a time period
-
-* `get_data`: User can retrieve the COVID data from the source as a dataframe. Specific data can be retrieved by passing the date range and the list of countries
 
 * `plot_summary`: Create a horizontal bar chart summarising a specified variable and value within a time period
 

@@ -2,7 +2,7 @@
 title: "Introduction to covizr"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{covizr-vignette}
+  %\VignetteIndexEntry{Introduction to covizr}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
