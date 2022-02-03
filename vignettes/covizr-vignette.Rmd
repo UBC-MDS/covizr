@@ -2,7 +2,7 @@
 title: "Introduction to covizr"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{covizr-vignette}
+  %\VignetteIndexEntry{Introduction to covizr}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -37,9 +37,9 @@ df
 
 By default the function returns the last 7 days of data around the world. There are a few options you can parse into the function for more specific data selection:
 
-* date_from: Start date of the data range with format of 'YYYY-MM-DD'.
-* date_to: End date of the data range with format of 'YYYY-MM-DD'.
-* location: Charactor vector of target country names.
+-   date_from: Start date of the data range with format of 'YYYY-MM-DD'.
+-   date_to: End date of the data range with format of 'YYYY-MM-DD'.
+-   location: Charactor vector of target country names.
 
 For example, to retrieve the data between '2021-05-01' to '2021-07-01' of Canada and United Kingdom:
 
@@ -48,6 +48,7 @@ loc <- c('Canada', 'United Kingdom')
 df <- get_data(date_from = "2021-05-01", date_to = "2021-07-01", location = loc)
 df
 ```
+
 ## Visualization functions
 
 ### Horizontal bar chart summarising a specified variable and value using `plot_summary`
@@ -55,5 +56,3 @@ df
 ### Line chart presenting specific countries' Covid information using `plot_spec`
 
 ### Line chart presenting Covid total new cases verses another metric using `plot_metric`
-
-
