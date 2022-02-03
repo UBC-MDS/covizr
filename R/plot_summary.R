@@ -18,7 +18,7 @@
 #' @importFrom rlang :=
 #'
 #' @examples
-#' df <- get_data()
+#' df <- get_data(date_from = "2022-01-01", date_to = "2022-01-07")
 #' plot_summary(
 #'   df,
 #'   var = "location", val = "new_cases", fun = "sum",
