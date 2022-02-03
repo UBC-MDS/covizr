@@ -24,4 +24,7 @@ Imports:
     stringr,
     testthat
 Suggests: 
-    covr
+    knitr,
+    covr,
+    rmarkdown
+VignetteBuilder: knitr
