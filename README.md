@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# covizr <img src='vignettes/logo.png' align="right" style="width:100px;height:100px;"/>
+# covizr <img src='https://github.com/UBC-MDS/covizr/raw/main/img/logo.png' align="right" style="width:100px;height:100px;"/>
 
 <!-- badges: start -->
 
