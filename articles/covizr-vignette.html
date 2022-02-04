@@ -91,20 +91,20 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_data.html">get_data</a></span><span class="op">(</span><span class="op">)</span>
 <span class="va">df</span>
-<span class="co">#&gt; <span style="color: #949494;"># A tibble: 1,507 × 67</span></span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 1,291 × 67</span></span>
 <span class="co">#&gt;    iso_code continent location date       total_cases new_cases new_cases_smoot…</span>
 <span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> AFG      Asia      Afghani… 2022-01-27      <span style="text-decoration: underline;">161</span>004       312             243 </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> AFG      Asia      Afghani… 2022-01-28      <span style="text-decoration: underline;">161</span>057        53             220.</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> AFG      Asia      Afghani… 2022-01-29      <span style="text-decoration: underline;">161</span>290       233             249.</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> AFG      Asia      Afghani… 2022-01-30      <span style="text-decoration: underline;">162</span>111       821             352.</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> AFG      Asia      Afghani… 2022-01-31      <span style="text-decoration: underline;">162</span>926       815             433.</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> AFG      Asia      Afghani… 2022-02-01      <span style="text-decoration: underline;">163</span>555       629             472.</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> AFG      Asia      Afghani… 2022-02-02      <span style="text-decoration: underline;">164</span>190       635             500.</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> ALB      Europe    Albania  2022-01-27      <span style="text-decoration: underline;">252</span>577      <span style="text-decoration: underline;">1</span>562            <span style="text-decoration: underline;">1</span>581.</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> ALB      Europe    Albania  2022-01-28      <span style="text-decoration: underline;">254</span>126      <span style="text-decoration: underline;">1</span>549            <span style="text-decoration: underline;">1</span>421.</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">10</span> ALB      Europe    Albania  2022-01-29      <span style="text-decoration: underline;">254</span>126         0            <span style="text-decoration: underline;">1</span>102 </span>
-<span class="co">#&gt; <span style="color: #949494;"># … with 1,497 more rows, and 60 more variables: total_deaths &lt;dbl&gt;,</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> AFG      Asia      Afghani… 2022-01-28      <span style="text-decoration: underline;">161</span>057        53             220.</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> AFG      Asia      Afghani… 2022-01-29      <span style="text-decoration: underline;">161</span>290       233             249.</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> AFG      Asia      Afghani… 2022-01-30      <span style="text-decoration: underline;">162</span>111       821             352.</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> AFG      Asia      Afghani… 2022-01-31      <span style="text-decoration: underline;">162</span>926       815             433.</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> AFG      Asia      Afghani… 2022-02-01      <span style="text-decoration: underline;">163</span>555       629             472.</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> AFG      Asia      Afghani… 2022-02-02      <span style="text-decoration: underline;">164</span>190       635             500.</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> ALB      Europe    Albania  2022-01-28      <span style="text-decoration: underline;">254</span>126      <span style="text-decoration: underline;">1</span>549            <span style="text-decoration: underline;">1</span>421.</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> ALB      Europe    Albania  2022-01-29      <span style="text-decoration: underline;">254</span>126         0            <span style="text-decoration: underline;">1</span>102 </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> ALB      Europe    Albania  2022-01-30      <span style="text-decoration: underline;">255</span>741      <span style="text-decoration: underline;">1</span>615            <span style="text-decoration: underline;">1</span>096.</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span> ALB      Europe    Albania  2022-01-31      <span style="text-decoration: underline;">258</span>543      <span style="text-decoration: underline;">2</span>802            <span style="text-decoration: underline;">1</span>496.</span>
+<span class="co">#&gt; <span style="color: #949494;"># … with 1,281 more rows, and 60 more variables: total_deaths &lt;dbl&gt;,</span></span>
 <span class="co">#&gt; <span style="color: #949494;">#   new_deaths &lt;dbl&gt;, new_deaths_smoothed &lt;dbl&gt;, total_cases_per_million &lt;dbl&gt;,</span></span>
 <span class="co">#&gt; <span style="color: #949494;">#   new_cases_per_million &lt;dbl&gt;, new_cases_smoothed_per_million &lt;dbl&gt;,</span></span>
 <span class="co">#&gt; <span style="color: #949494;">#   total_deaths_per_million &lt;dbl&gt;, new_deaths_per_million &lt;dbl&gt;,</span></span>
