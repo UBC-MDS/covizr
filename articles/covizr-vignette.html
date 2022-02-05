@@ -183,6 +183,19 @@
 <div class="section level3">
 <h3 id="presenting-covid-total-new-cases-verses-another-metric-using-plot_metric">Presenting Covid total new cases verses another metric using <code>plot_metric</code><a class="anchor" aria-label="anchor" href="#presenting-covid-total-new-cases-verses-another-metric-using-plot_metric"></a>
 </h3>
+<p>After looking at the trend for COVID related cases for specific countries, we can dive deeper into a particular count and visualize the trend of COVID cases with another metric. Some examples of metric which can be used are positive_rate, total_vaccinations, total_deaths, etc. The list of arguments which can be used are provided below:</p>
+<ul>
+<li>df: Data frame of the selected covid data from get_data(), note that the date range used in get_data function must match or cover the date range here, in order to get complete result</li>
+<li>loc_val: Character vector containing a single country.</li>
+<li>metric: Character vector containing a numeric column of the data frame.</li>
+<li>date_from: Start date of the data range with format of ‘YYYY-MM-DD’.</li>
+<li>date_to: End date of the data range with format of ‘YYYY-MM-DD’.</li>
+</ul>
+<p>The plot_metric function below charts trend of daily new COVID-19 cases versus the positive rates in Canada for the first two weeks of January 2022.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_data.html">get_data</a></span><span class="op">(</span>date_from<span class="op">=</span><span class="st">"2022-01-01"</span>, date_to<span class="op">=</span><span class="st">"2022-01-15"</span>, location <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Canada"</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="../reference/plot_metric.html">plot_metric</a></span><span class="op">(</span><span class="va">df</span>, loc_val <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Canada"</span><span class="op">)</span>, metric <span class="op">=</span> <span class="st">"positive_rate"</span>, date_from <span class="op">=</span> <span class="st">"2022-01-01"</span>, <span class="st">"2022-01-15"</span><span class="op">)</span></code></pre></div>
+<p><img src="covizr-vignette_files/figure-html/plot_metric-1.png" width="672"></p>
 </div>
 </div>
   </div>
