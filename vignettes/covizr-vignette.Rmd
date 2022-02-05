@@ -89,3 +89,22 @@ plot_spec(df, location = c('Canada', 'United Kingdom'), val="new_deaths", date_f
 
 
 ### Presenting Covid total new cases verses another metric using `plot_metric`
+
+After looking at the trend for COVID related cases for specific countries, we can dive deeper
+into a particular count and visualize the trend of COVID cases with another metric. Some examples of
+metric which can be used are positive_rate, total_vaccinations, total_deaths, etc. The list of 
+arguments which can be used are provided below:
+
+-   df: Data frame of the selected covid data from get_data(), note that the date range used in get_data function must match or cover the date range here, in order to get complete result
+-   loc_val: Character vector containing a single country.
+-   metric: Character vector containing a numeric column of the data frame.
+-   date_from: Start date of the data range with format of 'YYYY-MM-DD'.
+-   date_to: End date of the data range with format of 'YYYY-MM-DD'.
+
+The plot_metric function below charts trend of daily new COVID-19 cases versus
+the positive rates in Canada for the first two weeks of January 2022.
+
+```{r plot_metric, message = FALSE, fig.width=7, fig.height=5}
+df <- get_data(date_from="2022-01-01", date_to="2022-01-15", location = c("Canada"))
+plot_metric(df, loc_val = c("Canada"), metric = "positive_rate", date_from = "2022-01-01", "2022-01-15")
+```
