@@ -46,6 +46,8 @@ This package contains four functions: `get_data`, `plot_metric`,
 ## Installation
 
 ``` r
+# Uncomment the below line to install `devtools` if not installed. 
+# install.packages("devtools") 
 devtools::install_github("UBC-MDS/covizr")
 ```
 
