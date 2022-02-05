@@ -149,6 +149,17 @@
 <div class="section level3">
 <h3 id="summarising-a-specified-variable-and-value-using-plot_summary">Summarising a specified variable and value using <code>plot_summary</code><a class="anchor" aria-label="anchor" href="#summarising-a-specified-variable-and-value-using-plot_summary"></a>
 </h3>
+<p>Use <code>plot_summary</code> when you want to find out what is the top variables (<code>var</code>) from a particular aggregated value (<code>val)</code> or metrics. As with all plotting function in this package, you need to call <code><a href="../reference/get_data.html">get_data()</a></code> first and pass the data frame into the plotting function.</p>
+<p>For example, we can see which are the top 10 countries with highest new Covid-19 cases in the first 14 days of 2022 using the following code:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">plot_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_data.html">get_data</a></span><span class="op">(</span>date_from <span class="op">=</span> <span class="st">"2022-01-01"</span>, date_to <span class="op">=</span> <span class="st">"2022-02-01"</span><span class="op">)</span>
+<span class="fu"><a href="../reference/plot_summary.html">plot_summary</a></span><span class="op">(</span><span class="va">plot_df</span>, var <span class="op">=</span> <span class="st">"location"</span>, val <span class="op">=</span> <span class="st">"new_cases"</span>, date_from <span class="op">=</span> <span class="st">"2022-01-01"</span>, date_to <span class="op">=</span> <span class="st">"2022-01-14"</span>, top_n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></code></pre></div>
+<p><img src="covizr-vignette_files/figure-html/plot_summary-1.png" width="672"></p>
+<ul>
+<li><p><code>var</code>: Use a categorical variable like <code>location</code>, <code>continent</code></p></li>
+<li><p><code>val</code>: Use a numeric variable like <code>new_cases</code>, <code>new_vaccinations</code>, <code>icu_patients</code></p></li>
+</ul>
+<p>By default, we use <code>sum</code> to aggregate your value of interest. You can use other aggregation function like <code>mean</code> as well, just specify the function name as a string in the argument (e.g. <code>fun = "mean"</code>).</p>
 </div>
 <div class="section level3">
 <h3 id="presenting-specific-countries-covid-information-using-plot_spec">Presenting specific countries’ Covid information using <code>plot_spec</code><a class="anchor" aria-label="anchor" href="#presenting-specific-countries-covid-information-using-plot_spec"></a>
@@ -163,7 +174,7 @@
 <li>title: The title of the plot.</li>
 </ul>
 <p>For example, this plot_spec function below draws the trend of new death cases in Canada and United Kingdom over the first two weeks of January 2022.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_data.html">get_data</a></span><span class="op">(</span>date_from<span class="op">=</span><span class="st">"2022-01-01"</span>, date_to<span class="op">=</span><span class="st">"2022-01-15"</span>, location <span class="op">=</span> <span class="va">loc</span><span class="op">)</span>
 <span class="fu"><a href="../reference/plot_spec.html">plot_spec</a></span><span class="op">(</span><span class="va">df</span>, location <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'Canada'</span>, <span class="st">'United Kingdom'</span><span class="op">)</span>, val<span class="op">=</span><span class="st">"new_deaths"</span>, date_from<span class="op">=</span><span class="st">"2022-01-01"</span>, 
           date_to<span class="op">=</span><span class="st">"2022-01-15"</span>, title<span class="op">=</span><span class="st">"Death cases in Canada and United Kingdom"</span><span class="op">)</span></code></pre></div>
