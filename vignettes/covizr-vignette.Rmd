@@ -39,7 +39,7 @@ By default the function returns the last 7 days of data around the world. There 
 
 -   date_from: Start date of the data range with format of 'YYYY-MM-DD'.
 -   date_to: End date of the data range with format of 'YYYY-MM-DD'.
--   location: Charactor vector of target country names.
+-   location: Character vector of target country names.
 
 For example, to retrieve the data between '2021-05-01' to '2021-07-01' of Canada and United Kingdom:
 
@@ -51,8 +51,26 @@ df
 
 ## Visualization functions
 
-### Horizontal bar chart summarising a specified variable and value using `plot_summary`
+### Summarising a specified variable and value using `plot_summary`
 
-### Line chart presenting specific countries' Covid information using `plot_spec`
+### Presenting specific countries' Covid information using `plot_spec`
 
-### Line chart presenting Covid total new cases verses another metric using `plot_metric`
+We could also get information from specific countries that interest us. By default, this plot_spec function will plot the last 7 days' new cases trend for Canada. There are a few options you can parse into the function:
+
+-   df: Data frame of the selected covid data from get_data(), note that the date range used in get_data function must match or cover the date range here, in order to get complete result
+-   location: Character vector of target country names.
+-   val: Quantitative values to be aggregated. Must be numeric variable. Also known as a 'measure'. Available options including new_deaths, reproduction_rate, icu_patients, hosp_patients, etc.
+-   date_from: Start date of the data range with format of 'YYYY-MM-DD'.
+-   date_to: End date of the data range with format of 'YYYY-MM-DD'.
+-   title: The title of the plot.
+
+For example, this plot_spec function below draws the trend of new death cases in Canada and Turkey over the first two weeks of January 2022.
+
+```{r plot_spec, message = FALSE, fig.width=7, fig.height=5}
+df <- get_data(date_from="2022-01-01", date_to="2022-01-15")
+plot_spec(df, location = c("Canada", "Turkey"), val="new_deaths", date_from="2022-01-01", 
+          date_to="2022-01-15", title="Death cases in Canada and Turkey")
+```
+
+
+### Presenting Covid total new cases verses another metric using `plot_metric`
