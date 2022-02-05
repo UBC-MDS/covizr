@@ -53,6 +53,21 @@ df
 
 ### Horizontal bar chart summarising a specified variable and value using `plot_summary`
 
+Use `plot_summary` when you want to find out what is the top variables (`var`) from a particular aggregated value (`val)` or metrics. As with all plotting function in this package, you need to call `get_data()` first and pass the data frame into the plotting function.
+
+For example, we can see which are the top 10 countries with highest new Covid-19 cases in the first 14 days of 2022 using the following code:
+
+```{r plot_summary, fig.width=7, fig.height=5, message = FALSE}
+plot_df <- get_data(date_from = "2022-01-01", date_to = "2022-02-01")
+plot_summary(plot_df, var = "location", val = "new_cases", date_from = "2022-01-01", date_to = "2022-01-14", top_n = 10)
+```
+
+-   `var`: Use a categorical variable like `location`, `continent`
+
+-   `val`: Use a numeric variable like `new_cases`, `new_vaccinations`, `icu_patients`
+
+By default, we use `sum` to aggregate your value of interest. You can use other aggregation function like `mean` as well, just specify the function name as a string in the argument (e.g. `fun = "mean"`).
+
 ### Line chart presenting specific countries' Covid information using `plot_spec`
 
 ### Line chart presenting Covid total new cases verses another metric using `plot_metric`
