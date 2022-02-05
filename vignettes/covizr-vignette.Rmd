@@ -64,12 +64,12 @@ We could also get information from specific countries that interest us. By defau
 -   date_to: End date of the data range with format of 'YYYY-MM-DD'.
 -   title: The title of the plot.
 
-For example, this plot_spec function below draws the trend of new death cases in Canada and Turkey over the first two weeks of January 2022.
+For example, this plot_spec function below draws the trend of new death cases in Canada and United Kingdom over the first two weeks of January 2022.
 
 ```{r plot_spec, message = FALSE, fig.width=7, fig.height=5}
-df <- get_data(date_from="2022-01-01", date_to="2022-01-15")
-plot_spec(df, location = c("Canada", "Turkey"), val="new_deaths", date_from="2022-01-01", 
-          date_to="2022-01-15", title="Death cases in Canada and Turkey")
+df <- get_data(date_from="2022-01-01", date_to="2022-01-15", location = loc)
+plot_spec(df, location = c('Canada', 'United Kingdom'), val="new_deaths", date_from="2022-01-01", 
+          date_to="2022-01-15", title="Death cases in Canada and United Kingdom")
 ```
 
 
